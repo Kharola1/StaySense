@@ -1,0 +1,22 @@
+section{
+    /* margin: 50px;
+    padding: 50px; */
+    box-sizing: border-box;
+    background: rgb(228, 228 , 228);
+    border-radius: 50px;
+}
+.btn1 {
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.btn1:hover{
+    background: white;
+    border: 1px solid;
+    color: black;
+}

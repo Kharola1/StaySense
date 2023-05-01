@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+<section class="Form m-3 p-3">
+  <div class="container">
+    <div class="row m-5 p-5 justify-content-center">
+      <div class="col-6">
+        <h1 class="font-weight-bold py-3">StaySense</h1>
+        <h4>Sign into your account</h4>
+        <form class="needs-validation" action="/login" method="post" novalidate>
+          <div class="form-floating mb-4">
+            <input name="username" type="email" class="form-control" id="username" placeholder="username" required>
+            <label for="username">Email address</label>
+            <div class="valid-feedback">
+              Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please choose a valid email.
+        </div>
+          </div>
+          <div class="form-floating mb-4">
+            <input name="password" type="password" class="form-control" id="password" placeholder="password" required>
+            <label for="password">Password</label>
+            <div class="valid-feedback">
+              Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter a password.
+        </div>
+          </div>
+          <div class="form-floating mb-4">
+            <button type="submit" class="btn1" value="login">Login</button>
+          </div>
+          <a href="#"> Forgot Password</a>
+          <p>Don't have an account ? <a href="/register">Register</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="/public/scripts/form-validation.js"></script>
+<%- include('../partials/footer') %>
