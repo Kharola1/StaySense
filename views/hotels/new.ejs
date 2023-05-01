@@ -4,53 +4,51 @@
         <div class="row m-5 p-5 justify-content-center">
             <div class="col-6">
                 <h1 class="font-weight-bold py-3">StaySense</h1>
-                <h4>Register a new account</h4>
-                <form class="needs-validation" action="/register" method="post" novalidate>
+                <h3>Add a new Hotel at StaySense</h3>
+                <form class="needs-validation" action="/hotels" method="post" novalidate>
                     <div class="form-floating mb-4">
-                        <input name="name" type="text" class="form-control" id="name" placeholder="name" required>
-                        <label for="name">Name</label>
+                        <input name="hotel[name]" type="text" class="form-control" id="name" placeholder="name" required>
+                        <label for="name">Hotel Name</label>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                         <div class="invalid-feedback">
-                          Please enter a name.
+                          Please enter a Hotel name.
                       </div>
                     </div>
                     <div class="form-floating mb-4">
-                        <input name="username" type="text" class="form-control" id="username" placeholder="username" required>
-                        <label for="username">Email</label>
+                        <input name="hotel[address]" type="text" class="form-control" id="address" placeholder="address" required>
+                        <label for="address">Enter a hotel address</label>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                         <div class="invalid-feedback">
-                          Please choose a valid email.
+                          Please enter hotel address.
                       </div>
                     </div>
                     <div class="form-floating mb-4">
-                        <input name="phoneNumber" type="number" class="form-control" id="phoneNumber" placeholder="phoneNumber" required>
-                        <label for="phoneNumber">Mobile Number</label>
+                        <input name="hotel[price]" type="number" class="form-control" id="price" min="500" max="10000" step="500" placeholder="price" required>
+                        <label for="price">Enter Hotel Price</label>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                         <div class="invalid-feedback">
-                          Please enter a valid mobile Number.
+                          Please enter hotel  price.
                       </div>
                     </div>
                     <div class="form-floating mb-4">
-                        <input name="password" type="password" class="form-control" id="password" placeholder="password" required>
-                        <label for="password">Password</label>
+                        <input name="hotel[image]" type="text" class="form-control" id="image" placeholder="image" required>
+                        <label for="image">Hotel Image</label>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                         <div class="invalid-feedback">
-                          Please enter a password.
+                          Please enter image address.
                       </div>
                     </div>
                       <div class="form-floating mb-4">
                         <button type="submit" class="btn1" value="register">Register</button>
                      </div>
-                    <a href="#"> Forgot Password</a>
-                    <p>Already have an account ? <a href="/login">Login</a></p>
                 </form>
             </div>
         </div>

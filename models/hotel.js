@@ -11,7 +11,7 @@ const hotelSchema = new mongoose.Schema({
     price:{
         type: Number,
         required:true,
-        min: 100,
+        min: 500,
         max: 10000
     },
 
@@ -27,10 +27,6 @@ const hotelSchema = new mongoose.Schema({
         type: Date,
         default:Date.now()
     },
-    reviews:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'review'
-    }],
     author: {
         type:mongoose.Schema.Types.ObjectId,
         ref:'user'

@@ -1,4 +1,5 @@
-const express           = require('express'),
+const express           = require('express')
+      ejs               = require('ejs'),
       mongoose          = require('mongoose'),
       session           = require('express-session'),
       flash             = require('connect-flash'),
@@ -54,13 +55,13 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
-    console.log(res.locals);
     next();
 });
 
 // Import router/API
-const authRoutes = require('./routes/auth');
-const hotelRoutes = require('./routes/hotel');
+const authRoutes = require('./routes/auth'),
+      hotelRoutes = require('./routes/hotels');
+
 app.use(authRoutes);
 app.use(hotelRoutes);
 
