@@ -1,13 +1,22 @@
 <%- include('../partials/header') %>
-<div class="row">
-    <div class="col-4">
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">@</span>
-            <input type="text" class="form-control" placeholder="Search Hotel" aria-label="Username"
-                aria-describedby="basic-addon1" id="searchInput" onkeyup="searchHotel()">
-        </div>
-    </div>
+ <div class="d-flex justify-content-center mb-3 border border-5">
+    <h1>StaySense Luxurious Hotel's </h1>
  </div>
- <h1>All listed hotels here</h1> 
+<div class="container text-center mb-4">
+    <div class="row">
+        <% for(let hotel of hotels) { %>
+        <div class="col-4 mt-4 mb-4">
+            <div class="card" style="width: 18rem;">
+                <img src="<%=hotel.image%>" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title"><%= hotel.name %></h5>
+                  <p class="card-text"><%= hotel.name %> is an Special Hotel of StaySense. At StaySense we know the value of customer and always apperciate the feedback of customer</p>
+                  <a href="/hotels/<%= hotel._id %>" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>

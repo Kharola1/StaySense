@@ -1,0 +1,58 @@
+<%- include('../partials/header.ejs') %>
+<section class="Form m-3 p-3">
+    <div class="container">
+        <div class="row m-5 p-5 justify-content-center">
+            <div class="col-6">
+                <h1 class="font-weight-bold py-3">StaySense</h1>
+                <h3>Edit a Hotel</h3>
+                <form class="needs-validation"  action="/hotels/<%= hotel._id %>?_method=PATCH" method="post" novalidate>
+                    <div class="form-floating mb-4">
+                        <input value="<%=hotel.name%>" name="hotel[name]" type="text" class="form-control" id="name" placeholder="name" required>
+                        <label for="name">Hotel Name</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                          Please enter a Hotel name.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input value="<%=hotel.address%>" name="hotel[address]" type="text" class="form-control" id="address" placeholder="address" required>
+                        <label for="address">Enter a hotel address</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                          Please enter hotel address.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input value="<%=hotel.price%>" name="hotel[price]" type="number" class="form-control" id="price" min="500" max="10000" step="500" placeholder="price" required>
+                        <label for="price">Enter Hotel Price</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                          Please enter hotel  price.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input value="<%=hotel.image%>" name="hotel[image]" type="text" class="form-control" id="image" placeholder="image" required>
+                        <label for="image">Hotel Image</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                          Please enter image address.
+                      </div>
+                    </div>
+                      <div class="form-floating mb-4">
+                        <button type="submit" class="btn1" value="edit">Update</button>
+                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/public/scripts/form-validation.js"></script>
+<%- include('../partials/footer.ejs') %>

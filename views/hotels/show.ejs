@@ -1,3 +1,14 @@
 <%- include('../partials/header.ejs') %>
-<h1>This page shows all hotels added</h1>
+<div>Hotel Name = <%=hotel.name%></div>
+<div>Hotel Address  = <%=hotel.address%></div>
+<div>Hotel Price  = <%=hotel.price%></div>
+<div>Is Room Available = <%=hotel.isRoomAvailable%></div>
+<div> Created At = <%=hotel.createdAt%></div>
+<div><a href="/users/<%= hotel.author._id %>"><%= hotel.author.username %></a></div>
+<div><%= hotel.createdAt.toDateString() %></div>
+<div><img src="<%=hotel.image%>"></div>
+<div><a class="btn btn-info" href="/hotels/<%= hotel._id %>/edit">Edit</a></div>
+<form action="/hotels/<%= hotel._id %>?_method=DELETE" method="post">
+    <input class="btn btn-danger" type="submit" value="delete">
+</form>
 <%- include('../partials/footer.ejs') %>
