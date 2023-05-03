@@ -30,8 +30,17 @@ const hotelSchema = new mongoose.Schema({
     author: {
         type:mongoose.Schema.Types.ObjectId,
         ref:'user'
-    }
-
+    },
+    overAllRating: {
+		type: Number,
+		default: 0
+	},
+    reviews: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'review'
+		}
+	],
 });
 
 const Hotel = mongoose.model('hotel' , hotelSchema);

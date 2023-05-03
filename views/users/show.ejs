@@ -1,0 +1,8 @@
+<%- include('../partials/header.ejs') %>
+<div><img src="<%=user.image%>"></div>
+<div>Full Name = <%=user.name%></div>
+<div>Address  = <%=user.address%></div>
+<div>Email  = <%=user.username%></div>
+<div>Mobile Number = <%=user.phoneNumber%></div>
+<div><a class="btn btn-info" href="/users/<%=user._id %>/edit">Edit</a></div>
+<%- include('../partials/footer.ejs') %>

@@ -38,17 +38,16 @@ router.get('/login', (req, res) => {
 	res.render('users/login');
 });
 
-router.post('/login',passport.authenticate('local', {
-		failureFlash: true,
-		failureRedirect: '/login'
-	}),
-	(req, res) => {
-		req.flash('success', 'welcome back user');
-		let redirectUrl = req.session.returnTo || '/hotels';
-		// delete req.session.returnTo;
-		res.redirect(redirectUrl);
-	}
+router.post('/login', passport.authenticate('local', {
+    failureFlash: true,
+    failureRedirect: '/login'
+  }),
+  (req, res) => {
+    req.flash('success', 'Welcome back, user!');
+    res.redirect('/');
+  }
 );
+
 
 router.get('/logout', (req, res) => {
     try {

@@ -1,0 +1,62 @@
+<%- include('../partials/header.ejs') %>
+<section class="Form m-3 p-3">
+    <div class="container">
+        <div class="row m-5 p-5 justify-content-center">
+            <div class="col-6">
+                <h1 class="font-weight-bold py-3">StaySense</h1>
+                <h3>Edit a User</h3>
+                <form class="needs-validation"  action="/users/<%=user._id %>?_method=PATCH" method="post" novalidate>
+                    <div class="form-floating mb-4">
+                        <input value="<%=user.name%>" name="user[name]" type="text" class="form-control" id="name" placeholder="name" required>
+                        <label for="name">User Name</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                          Please enter a User name.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input value="<%=user.address%>" name="user[address]" type="text" class="form-control" id="address" placeholder="address" required>
+                        <label for="address">Address</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                          Please enter a User name.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input value="<%=user.username%>" name="user[username]" type="text" class="form-control" id="username" placeholder="address" required disabled>
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input value="<%=user.phoneNumber%>" name="user[phoneNumber]" type="number" class="form-control" id="phoneNumber"  placeholder="phoneNumber" required>
+                        <label for="price">Enter a Mobile Number</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                          Please enter a Mobile Number.
+                      </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input value="<%=user.image%>" name="user[image]" type="text" class="form-control" id="image" placeholder="image" required>
+                        <label for="image">User Image</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                          Please enter image address.
+                      </div>
+                    </div>
+                      <div class="form-floating mb-4">
+                        <button type="submit" class="btn1" value="edit">Update</button>
+                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/public/scripts/form-validation.js"></script>
+<%- include('../partials/footer.ejs') %>

@@ -7,8 +7,55 @@
 <div><a href="/users/<%= hotel.author._id %>"><%= hotel.author.username %></a></div>
 <div><%= hotel.createdAt.toDateString() %></div>
 <div><img src="<%=hotel.image%>"></div>
-<div><a class="btn btn-info" href="/hotels/<%= hotel._id %>/edit">Edit</a></div>
-<form action="/hotels/<%= hotel._id %>?_method=DELETE" method="post">
-    <input class="btn btn-danger" type="submit" value="delete">
-</form>
+<% if (currentUser && hotel.author._id.equals(currentUser._id)) { %>
+    <div><a class="btn btn-info" href="/hotels/<%= hotel._id %>/edit">Edit</a></div>
+    <form action="/hotels/<%= hotel._id %>?_method=DELETE" method="post">
+        <input class="btn btn-danger" type="submit" value="delete">
+    </form>
+<% } %>
+
+    <div class="row">
+        <div class="col-3">
+            <form class="mt-5 needs-validation" action="/hotels/<%=hotel._id%>/reviews" method="post" novalidate>
+                <fieldset class="starability-basic">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+                <div class="form-floating mb-3">
+                    <input name="review[body]" type="text" class="form-control" id="review" placeholder="review body"
+                        required>
+                    <label for="review">Hotel Review Body</label>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter some text.
+                    </div>
+                </div>
+                <input class=" mt-2 btn btn-primary" type="submit" value="add review">
+            </form>
+            <h1>All Reviews</h1>
+        <% for(let review of hotel.reviews) { %>
+        <div><%= review.body %> </div>
+        <p class="starability-result" data-rating="<%= review.rating %>"></p>
+        <div><%= review.author.name %></div>
+        <% if (currentUser && review.author._id.equals(currentUser._id)) { %>
+        <form action="/hotels/<%= hotel._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
+            <input type="submit" class="btn btn-sm btn-danger" value="delete">
+        </form>
+        <% } %>
+        <% } %>
+           </div>
+    </div>
+    <hr>
+<script src="/public/scripts/form-validation.js"></script>
 <%- include('../partials/footer.ejs') %>

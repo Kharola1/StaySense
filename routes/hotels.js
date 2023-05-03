@@ -69,10 +69,16 @@ router.post('/hotels', isLoggedIn, async (req, res) => {
 router.get('/hotels/:id', async (req, res) => {
 	try {
 		let hotel = await Hotel.findById(req.params.id)
-		.populate({
-			path: 'author'
-		});
-		res.render('hotels/show', { hotel });
+			.populate({
+				path: 'author'
+			})
+			.populate({
+				path: 'reviews',
+				populate: {
+					path: 'author'
+				}
+			});
+		res.render('hotels/show', { hotel, });
 	} catch (error) {
 		req.flash('error', 'error while fetching a hotel, please try again later');
 		console.log(error);
@@ -80,7 +86,7 @@ router.get('/hotels/:id', async (req, res) => {
 	}
 });
 
-router.get('/hotels/:id/edit', isLoggedIn, async (req, res) => {
+router.get('/hotels/:id/edit', isLoggedIn, isHotelAuthor, async (req, res) => {
 	try {
 		let hotel = await Hotel.findById(req.params.id);
 		res.render('hotels/edit', { hotel });
@@ -91,7 +97,7 @@ router.get('/hotels/:id/edit', isLoggedIn, async (req, res) => {
 	}
 });
 
-router.patch('/hotels/:id', isLoggedIn, async (req, res) => {
+router.patch('/hotels/:id', isLoggedIn, isHotelAuthor, async (req, res) => {
 	try {
 		await Hotel.findByIdAndUpdate(req.params.id, req.body.hotel);
 		console.log(req.body);
@@ -104,7 +110,7 @@ router.patch('/hotels/:id', isLoggedIn, async (req, res) => {
 	}
 });
 
-router.delete('/hotels/:id', isLoggedIn, async (req, res) => {
+router.delete('/hotels/:id', isLoggedIn, isHotelAuthor, async (req, res) => {
 	try {
 		await Hotel.findByIdAndDelete(req.params.id);
 		req.flash('success', 'delete done');

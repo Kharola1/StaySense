@@ -60,10 +60,14 @@ app.use((req, res, next) => {
 
 // Import router/API
 const authRoutes = require('./routes/auth'),
-      hotelRoutes = require('./routes/hotels');
+      hotelRoutes = require('./routes/hotels'),
+      userRoutes = require('./routes/users');
+      reviewRoutes = require('./routes/reviews');
 
 app.use(authRoutes);
 app.use(hotelRoutes);
+app.use(userRoutes);
+app.use(reviewRoutes);
 
 // Port connection
 let PORT = process.env.PORT;

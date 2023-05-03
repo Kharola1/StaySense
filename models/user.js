@@ -5,6 +5,11 @@ let userSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	address:{
+		type:String
+
+	},
+
 	username: {
 		type: String,
 		required:[true , 'You need to pass a username'],
@@ -15,14 +20,14 @@ let userSchema = new mongoose.Schema({
 		type:String
 
 	},
-	email:  {
-		type: String
-		
-	},
 	phoneNumber : {
 		type: Number,
 		required:true
-	}
+	},
+	author: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
+    }
 });
 userSchema.plugin(passportLocalMongoose);
 let User = mongoose.model('user', userSchema);
