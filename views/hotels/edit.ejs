@@ -5,7 +5,7 @@
             <div class="col-6">
                 <h1 class="font-weight-bold py-3">StaySense</h1>
                 <h3>Edit a Hotel</h3>
-                <form class="needs-validation"  action="/hotels/<%= hotel._id %>?_method=PATCH" method="post" novalidate>
+                <form class="needs-validation"  action="/hotels/<%=hotel._id%>?_method=PATCH" method="post" novalidate>
                     <div class="form-floating mb-4">
                         <input value="<%=hotel.name%>" name="hotel[name]" type="text" class="form-control" id="name" placeholder="name" required>
                         <label for="name">Hotel Name</label>
