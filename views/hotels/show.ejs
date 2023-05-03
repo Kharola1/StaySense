@@ -1,11 +1,11 @@
 <%- include('../partials/header.ejs') %>
 <div>Hotel Name = <%=hotel.name%></div>
 <div>Hotel Address  = <%=hotel.address%></div>
-<div>Hotel Price  = <%=hotel.price%></div>
+<div>Hotel Price  = <%=hotel.price%></div> 
 <div>Is Room Available = <%=hotel.isRoomAvailable%></div>
-<div> Created At = <%=hotel.createdAt%></div>
-<div><a href="/users/<%= hotel.author._id %>"><%= hotel.author.username %></a></div>
-<div><%= hotel.createdAt.toDateString() %></div>
+<div>Created At = <%=hotel.createdAt.toDateString() %></div>
+<div>Created By = <a href="/users/<%= hotel.author._id %>"><%= hotel.author.username %></a></div>
+<div>OverAllRating = <%= hotel.OverAllRating%></div>
 <div><img src="<%=hotel.image%>"></div>
 <% if (currentUser && hotel.author._id.equals(currentUser._id)) { %>
     <div><a class="btn btn-info" href="/hotels/<%= hotel._id %>/edit">Edit</a></div>
