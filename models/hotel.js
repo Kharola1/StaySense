@@ -41,6 +41,17 @@ const hotelSchema = new mongoose.Schema({
 			ref: 'review'
 		}
 	],
+    geometry: {
+		type: {
+			type: String,
+			enum: [ 'Point' ],
+			required: true
+		},
+		coordinates: {
+			type: [ Number ],
+			required: true
+		}
+	},
 });
 
 const Hotel = mongoose.model('hotel' , hotelSchema);

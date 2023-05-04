@@ -1,12 +1,38 @@
 <%- include('../partials/header.ejs') %>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+    .selected{
+        color: red;
+    }
+</style>
 <div>Hotel Name = <%=hotel.name%></div>
 <div>Hotel Address  = <%=hotel.address%></div>
 <div>Hotel Price  = <%=hotel.price%></div> 
 <div>Is Room Available = <%=hotel.isRoomAvailable%></div>
 <div>Created At = <%=hotel.createdAt.toDateString() %></div>
 <div>Created By = <a href="/users/<%= hotel.author._id %>"><%= hotel.author.username %></a></div>
-<div>OverAllRating = <%= hotel.OverAllRating%></div>
-<div><img src="<%=hotel.image%>"></div>
+<div class="container px-4 text-center">
+    <div class="row gx-5">
+      <div class="col object-fit-cover border rounded">
+        <div class="col object-fit-cover border rounded"><img src="<%=hotel.image%>"></div>
+      </div>
+      <div class="col">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+
 <% if (currentUser && hotel.author._id.equals(currentUser._id)) { %>
     <div><a class="btn btn-info" href="/hotels/<%= hotel._id %>/edit">Edit</a></div>
     <form action="/hotels/<%= hotel._id %>?_method=DELETE" method="post">
@@ -57,5 +83,25 @@
            </div>
     </div>
     <hr>
+    <script>
+        let arr = []; 
+        arr.push( <%-coordinates[0] %> );
+        arr.push( <%-coordinates[1] %> );
+        mapboxgl.accessToken =
+            'pk.eyJ1Ijoia2hhcm9sYTEiLCJhIjoiY2xoOGdlOXBzMDhkdjNrbG8xMmpjb3E0YSJ9.qm5SbjQrdfE0KR3HgYbv8Q';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+            style: 'mapbox://styles/mapbox/outdoors-v12', // style URL
+            center: arr, // starting position [lng, lat]
+            zoom: 14 // starting zoom
+        });
+        const marker1 = new mapboxgl.Marker()
+            .setLngLat(arr)
+            .setPopup(new mapboxgl.Popup()
+                .setHTML('<h4><%=hotel.name%></h4><p><%=hotel.address%></p>'))
+            .addTo(map);
+        map.addControl(new mapboxgl.NavigationControl());
+    </script>
 <script src="/public/scripts/form-validation.js"></script>
 <%- include('../partials/footer.ejs') %>
